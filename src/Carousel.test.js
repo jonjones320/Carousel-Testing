@@ -58,8 +58,8 @@ it("works when you click the left arrow", function() {
       title="images for testing"
     />
   );
-  
-  // move forward in the carousel
+
+  // select arrows to move in the carousel
   const rightArrow = container.querySelector(".bi-arrow-right-circle");
   const leftArrow = container.querySelector(".bi-arrow-left-circle");
 
@@ -106,4 +106,46 @@ it("works when you click the left arrow", function() {
     expect(
       container.querySelector('img[alt="testing image 3"]')
     ).not.toBeInTheDocument();
-})
+});
+
+
+it("doesn't have arrows at the left limit", function() {
+  const { container } = render(
+    <Carousel
+      photos={TEST_IMAGES}
+      title="images for testing"
+    />
+  );
+
+  // left arrow to move in the carousel
+  const leftArrow = container.querySelector(".bi-arrow-left-circle");
+
+  // click left until the last image
+  fireEvent.click(leftArrow);
+  fireEvent.click(leftArrow);
+
+  expect(
+    container.querySelector('bi bi-arrow-left-circle')
+  ).not.toBeInTheDocument();
+});
+
+
+it("doesn't have arrows at the right limit", function() {
+  const { container } = render(
+    <Carousel
+      photos={TEST_IMAGES}
+      title="images for testing"
+    />
+  );
+
+  // right arrow to move in the carousel
+  const rightArrow = container.querySelector(".bi-arrow-right-circle");
+
+  // click left until the last image
+  fireEvent.click(rightArrow);
+  fireEvent.click(rightArrow);
+
+  expect(
+    container.querySelector('bi bi-arrow-right-circle')
+  ).not.toBeInTheDocument();
+});

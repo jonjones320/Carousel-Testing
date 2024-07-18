@@ -22,12 +22,15 @@ import Card from "./Card";
 
   //Increments currCardIdx state by 1
   function goForward() {
-    setCurrCardIdx((currCardIdx + 1) % total);
+    if (currCardIdx < total -1) {
+    setCurrCardIdx(currCardIdx + 1);}
   }
 
   //Decrements currCardIdx state by 1
   function goBackward() {
-    setCurrCardIdx((currCardIdx - 1 + total) % total);
+    if (currCardIdx > 0) {
+      setCurrCardIdx(currCardIdx - 1);
+    }
   }
 
   return (
