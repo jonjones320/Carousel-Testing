@@ -4,8 +4,21 @@ import Carousel from "./Carousel";
 import TEST_IMAGES from "./_testCommon.js";
 
 
-it("renders without crashing", function() {
-  render(<Carousel />);
+it("renders Carousel without crashing", function() {
+  render(<Carousel 
+    photos={TEST_IMAGES}
+    title="images for testing"
+    />);
+});
+
+
+it("matches Carousel snapshot", function() {
+  const { asFragment } = render(<Carousel 
+    photos={TEST_IMAGES}
+    title="images for testing"
+    />
+  );
+  expect(asFragment()).toMatchSnapshot();
 });
 
 
